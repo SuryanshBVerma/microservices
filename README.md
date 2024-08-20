@@ -24,7 +24,7 @@ This project is a scalable social media platform built using a microservices arc
 - **Testing:** Postman
 
 ### **Architecture Diagram**
-![Architecture Diagram](path/to/architecture-diagram.png)
+![Architecture Diagram](architecture.jpeg)
 
 ## Prerequisites
 - **Node.js** and **npm**
