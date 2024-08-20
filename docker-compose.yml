@@ -1,0 +1,87 @@
+version: '3.8'
+
+services:
+  mongo-database:
+    container_name: mongo-database
+    image: mongo:4
+    ports:
+      - 27017:27017
+
+  user-service:
+    build:
+      context: ./services/user-service
+    ports:
+      - "5001:5001"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/socialMediaPlatform
+
+  post-service:
+    build:
+      context: ./services/post-service
+    ports:
+      - "5002:5002"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/socialMediaPlatform
+
+  comment-service:
+    build:
+      context: ./services/comment-service
+    ports:
+      - "5003:5003"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/socialMediaPlatform
+
+  like-service:
+    build:
+      context: ./services/like-service
+    ports:
+      - "5004:5004"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/socialMediaPlatform
+
+  notification-service:
+    build:
+      context: ./services/notification-service
+    ports:
+      - "5005:5005"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/socialMediaPlatform
+
+  follow-service:
+    build:
+      context: ./services/follow-service
+    ports:
+      - "5006:5006"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/socialMediaPlatform
+      
+
+  media-service:
+    build:
+      context: ./services/media-service
+    ports:
+      - "5007:5007"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/socialMediaPlatform
+
+  gateway:
+    build:
+      context: ./gateway
+    ports:
+      - "5000:5000"
+    depends_on:
+      - user-service
+      - post-service
+      - comment-service
+      - like-service
+      - notification-service
+      - follow-service
+      - media-service
+
+  mongo:
+    image: mongo:latest
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:

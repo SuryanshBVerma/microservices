@@ -1,0 +1,8 @@
+gateway/node_modules
+services/comment-service/node_modules
+services/follow-service/node_modules
+services/like-service/node_modules
+services/media-service/node_modules
+services/notification-service/node_modules
+services/post-service/node_modules
+services/user-service/node_modules
